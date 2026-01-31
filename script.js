@@ -18,3 +18,20 @@ document.addEventListener('DOMContentLoaded', function() {
         text.classList.add('loaded');
     }, 100);
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Добавляем небольшую интерактивность
+    const elements = document.querySelectorAll('.logo, .welcome-text, .sub-text');
+
+    // Эффект при клике на логотип
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        logo.addEventListener('click', function() {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    }
+});
