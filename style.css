@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: #ffffff;
     min-height: 100vh;
     display: flex;
@@ -20,11 +20,32 @@ body {
     text-align: center;
     max-width: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
 }
 
+/* Логотип */
+.logo {
+    width: 120px;
+    height: 120px;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInDown 0.8s ease-out 0.3s forwards;
+}
+
+@keyframes fadeInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Основной текст */
 .welcome-text {
     font-size: 3.5rem;
-    font-weight: 900;
+    font-weight: 600; /* Semi-bold как в SF Pro */
     letter-spacing: -1px;
     line-height: 1.1;
     opacity: 0;
@@ -34,58 +55,81 @@ body {
     padding: 0 20px;
 }
 
-/* Анимация появления */
+/* Анимация появления текста */
 @keyframes fadeInUp {
     0% {
         opacity: 0;
         transform: translateY(40px) scale(0.95);
-        filter: blur(4px);
-    }
-    50% {
-        opacity: 0.5;
-        filter: blur(2px);
     }
     100% {
         opacity: 1;
         transform: translateY(0) scale(1);
-        filter: blur(0);
     }
 }
 
-/* Дополнительная анимация пульсации после появления */
-@keyframes subtlePulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.01);
-    }
+/* Дополнительный текст */
+.sub-text {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #8E8E93; /* Серый цвет как в iOS */
+    opacity: 0;
+    animation: fadeIn 1s ease-out 1.5s forwards;
+    letter-spacing: 0.3px;
+    max-width: 500px;
+    line-height: 1.5;
 }
 
-.welcome-text {
-    animation:
-        fadeInUp 1.2s cubic-bezier(0.215, 0.610, 0.355, 1) forwards,
-        subtlePulse 3s ease-in-out 1.5s infinite;
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
 }
 
 /* Мобильная адаптация */
 @media (max-width: 768px) {
+    .logo {
+        width: 100px;
+        height: 100px;
+    }
+
     .welcome-text {
         font-size: 2.8rem;
-        font-weight: 800;
+        font-weight: 600;
         letter-spacing: -0.5px;
+    }
+
+    .sub-text {
+        font-size: 0.95rem;
+    }
+
+    .container {
+        gap: 25px;
     }
 }
 
 @media (max-width: 480px) {
+    .logo {
+        width: 80px;
+        height: 80px;
+    }
+
     .welcome-text {
         font-size: 2.2rem;
-        font-weight: 800;
+        font-weight: 600;
         letter-spacing: 0;
+    }
+
+    .sub-text {
+        font-size: 0.9rem;
+        padding: 0 15px;
     }
 
     body {
         padding: 15px;
+    }
+
+    .container {
+        gap: 20px;
     }
 }
 
@@ -93,9 +137,14 @@ body {
     .welcome-text {
         font-size: 1.8rem;
     }
+
+    .logo {
+        width: 70px;
+        height: 70px;
+    }
 }
 
-/* Эффект при касании на мобильных */
+/* Эффект при касании */
 .welcome-text:active {
     opacity: 0.9;
     transition: opacity 0.1s;
